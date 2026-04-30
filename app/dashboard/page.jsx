@@ -72,7 +72,10 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
+      <div className={`grid grid-cols-2 sm:grid-cols-3 ${isAdmin ? 'lg:grid-cols-6' : 'lg:grid-cols-5'} gap-3.5`}>
+        {isAdmin && (
+          <StatCard label="Total Projects" value={projects?.length} icon={<FolderOpen size={18}/>} bg="bg-violet-50" fg="text-violet-500"/>
+        )}
         <StatCard label="Total Tasks" value={stats?.total} icon={<ClipboardCheck size={18}/>} bg="bg-indigo-50" fg="text-indigo-500"/>
         <StatCard label="Todo" value={stats?.todo} icon={<NotebookPen size={18}/>} bg="bg-amber-50" fg="text-amber-500"/>
         <StatCard label="In Progress" value={stats?.inProgress} icon={<RotateCcw size={18}/>} bg="bg-blue-50" fg="text-blue-500"/>
@@ -80,7 +83,7 @@ export default function Dashboard() {
         <StatCard label="Overdue" value={stats?.overdue} icon={<MessageSquareWarning size={18}/>} bg="bg-red-50" fg="text-red-500"/>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className={`grid grid-cols-1 ${isAdmin ? 'lg:grid-cols-2' : ''} gap-4`}>
         <div className="bg-white border border-gray-200 rounded-xl p-5">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-sm font-semibold text-gray-900">Recent Tasks</h2>
@@ -100,24 +103,26 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-xl p-5">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-sm font-semibold text-gray-900">Your Projects</h2>
-            <Link href="/projects" className="text-xs text-gray-400 hover:text-gray-600 transition">View all →</Link>
-          </div>
-          {projects?.length === 0 && <p className="text-xs text-gray-400 text-center py-5">No projects yet.</p>}
-          <div className="flex flex-col">
-            {projects?.map((p) => (
-              <div key={p._id} className="flex items-center gap-3 py-2.5 border-b border-gray-100 last:border-0">
-                <div className="w-8 h-8 rounded-lg bg-violet-50 text-violet-500 grid place-items-center shrink-0"><FolderOpen size={16}/></div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">{p.name}</p>
-                  <p className="text-xs text-gray-400 mt-0.5">{p.members?.length || 0} member{p.members?.length !== 1 ? "s" : ""}{p.description && <> · {p.description}</>}</p>
+        {isAdmin && (
+          <div className="bg-white border border-gray-200 rounded-xl p-5">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-sm font-semibold text-gray-900">Your Projects</h2>
+              <Link href="/projects" className="text-xs text-gray-400 hover:text-gray-600 transition">View all →</Link>
+            </div>
+            {projects?.length === 0 && <p className="text-xs text-gray-400 text-center py-5">No projects yet.</p>}
+            <div className="flex flex-col">
+              {projects?.map((p) => (
+                <div key={p._id} className="flex items-center gap-3 py-2.5 border-b border-gray-100 last:border-0">
+                  <div className="w-8 h-8 rounded-lg bg-violet-50 text-violet-500 grid place-items-center shrink-0"><FolderOpen size={16}/></div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-900 truncate">{p.name}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">{p.members?.length || 0} member{p.members?.length !== 1 ? "s" : ""}{p.description && <> · {p.description}</>}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
