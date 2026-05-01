@@ -230,7 +230,12 @@ export default function TasksPage() {
                                         <td className="px-4 py-3 text-gray-500">{task.project?.name || "-"}</td>
                                         <td className="px-4 py-3 text-gray-500">{task.assignedTo?.name || "-"}</td>
                                         <td className="px-4 py-3 text-gray-500 text-xs">
-                                            {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : "-"}
+                                            <span className={task.dueDate && new Date(task.dueDate) < new Date() && task.status !== "Completed" ? "text-red-600 font-semibold" : ""}>
+                                                {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : "-"}
+                                            </span>
+                                            {task.dueDate && new Date(task.dueDate) < new Date() && task.status !== "Completed" && (
+                                                <span className="ml-2 bg-red-100 text-red-800 text-[10px] px-1.5 py-0.5 rounded-full font-semibold">Overdue</span>
+                                            )}
                                         </td>
                                         <td className="px-4 py-3">
                                             <select
@@ -271,7 +276,11 @@ export default function TasksPage() {
                                     <span>Project: <span className="text-gray-600">{task.project?.name || "-"}</span></span>
                                     <span>Assigned: <span className="text-gray-600">{task.assignedTo?.name || "-"}</span></span>
                                     {task.dueDate && (
-                                        <span>Due: <span className="text-gray-600">{new Date(task.dueDate).toLocaleDateString()}</span></span>
+                                        <span>Due: <span className={task.dueDate && new Date(task.dueDate) < new Date() && task.status !== "Completed" ? "text-red-600 font-semibold" : "text-gray-600"}>{new Date(task.dueDate).toLocaleDateString()}</span>
+                                            {task.dueDate && new Date(task.dueDate) < new Date() && task.status !== "Completed" && (
+                                                <span className="ml-1.5 bg-red-100 text-red-800 text-[10px] px-1.5 py-0.5 rounded-full font-semibold">Overdue</span>
+                                            )}
+                                        </span>
                                     )}
                                 </div>
                             </div>

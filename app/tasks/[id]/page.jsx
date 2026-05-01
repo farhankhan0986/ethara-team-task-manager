@@ -38,6 +38,7 @@ export default function TaskDetailPage() {
     Todo: "bg-amber-100 text-amber-800",
     "In-Progress": "bg-blue-100 text-blue-800",
     Completed: "bg-emerald-100 text-emerald-800",
+    "Overdue": "bg-red-100 text-red-800",
   };
 
   return (
@@ -52,9 +53,15 @@ export default function TaskDetailPage() {
       <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-5">
         <div className="flex justify-between items-start gap-3">
           <h1 className="text-xl font-bold text-gray-900 cursor-pointer hover:text-blue-700 transition" onClick={() => router.push(`/tasks/${task._id}`)}>{task.title}</h1>
-          <span className={`text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 ${statusColor[task.status] || "bg-gray-100 text-gray-600"}`}>
-            {task.status}
-          </span>
+          {task.dueDate && new Date(task.dueDate) < new Date() && task.status !== "Completed" ? (
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 bg-red-100 text-red-800">
+              Overdue
+            </span>
+          ) : (
+            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 ${statusColor[task.status] || "bg-gray-100 text-gray-600"}`}>
+              {task.status}
+            </span>
+          )}
         </div>
 
         {task.description && (

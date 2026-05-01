@@ -97,7 +97,7 @@ export default function Dashboard() {
                   <p className="text-sm font-medium text-gray-900 truncate">{t.title}</p>
                   <p className="text-xs text-gray-400 mt-0.5">{t.project?.name || "No project"}{t.dueDate && <> · Due {new Date(t.dueDate).toLocaleDateString()}</>}</p>
                 </div>
-                <StatusBadge status={t.status}/>
+                <StatusBadge task={t}/>
               </div>
             ))}
           </div>
@@ -140,7 +140,12 @@ function StatCard({ label, value, icon, bg, fg }) {
   );
 }
 
-function StatusBadge({ status }) {
+function StatusBadge({ task }) {
+  const isOverdue = task.dueDate && new Date(task.dueDate) < new Date() && task.status !== "Completed";
+  if (isOverdue) {
+    return <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap bg-red-100 text-red-800">Overdue</span>;
+  }
+  const status = task.status;
   const cls = { Todo: "bg-amber-100 text-amber-800", "In-Progress": "bg-blue-100 text-blue-800", Completed: "bg-emerald-100 text-emerald-800" };
   const lbl = { Todo: "Todo", "In-Progress": "In Progress", Completed: "Done" };
   return <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${cls[status] || "bg-gray-100 text-gray-600"}`}>{lbl[status] || status}</span>;

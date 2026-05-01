@@ -108,9 +108,15 @@ export default function ProjectDetailPage() {
                     {task.dueDate && <> · Due {new Date(task.dueDate).toLocaleDateString()}</>}
                   </p>
                 </div>
-                <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full shrink-0 ${statusColor[task.status] || "bg-gray-100 text-gray-600"}`}>
-                  {task.status}
-                </span>
+                {task.dueDate && new Date(task.dueDate) < new Date() && task.status !== "Completed" ? (
+                  <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full shrink-0 bg-red-100 text-red-800">
+                    Overdue
+                  </span>
+                ) : (
+                  <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full shrink-0 ${statusColor[task.status] || "bg-gray-100 text-gray-600"}`}>
+                    {task.status}
+                  </span>
+                )}
               </Link>
             ))}
           </div>
