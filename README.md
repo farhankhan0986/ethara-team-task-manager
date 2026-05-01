@@ -1,6 +1,8 @@
-# TeamTask
+# TaskManager - ethara-team-task-manager
 
 A team task management app built with Next.js and MongoDB.
+
+**Live** - https://ethara-team-task-manager-production.up.railway.app/
 
 ## Features
 
