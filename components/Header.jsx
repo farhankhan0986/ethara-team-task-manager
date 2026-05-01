@@ -86,7 +86,7 @@ export default function Header() {
                 </span>
                 <button
                   onClick={handleLogout}
-                  className="px-3 py-1.5 rounded-md border border-gray-300 text-gray-500 hover:text-red-700 hover:border-red-400 transition text-xs"
+                  className="px-3 py-1.5 cursor-pointer rounded-md border border-gray-300 text-gray-500 hover:text-red-700 hover:border-red-400 transition text-xs"
                 >
                   Logout
                 </button>
@@ -95,13 +95,13 @@ export default function Header() {
               <>
                 <button
                   onClick={() => router.push("/login")}
-                  className="px-3 py-1.5 text-gray-500 hover:text-gray-900 transition"
+                  className="px-3 py-1.5 cursor-pointer text-gray-500 hover:text-gray-900 transition"
                 >
                   Login
                 </button>
                 <button
                   onClick={() => router.push("/signup")}
-                  className="px-4 py-1.5 rounded-md bg-gray-900 text-white hover:bg-gray-800 transition text-sm"
+                  className="px-4 py-1.5 cursor-pointer rounded-md bg-gray-900 text-white hover:bg-gray-800 transition text-sm"
                 >
                   Sign Up
                 </button>

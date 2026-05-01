@@ -211,7 +211,7 @@ export default function ProjectsPage() {
               return (
                 <div key={project._id} className="bg-white border border-gray-200 rounded-xl p-4 space-y-2.5">
                   <div className="flex justify-between items-start gap-2">
-                    <h3 className="text-sm font-semibold text-gray-900">{project.name}</h3>
+                    <h3 className="text-sm font-semibold text-gray-900 select-none" onClick={()=>router.push(`/projects/${project._id}`)}>{project.name}</h3>
                     <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full shrink-0 ${
                       isOwner ? "bg-indigo-100 text-indigo-700" : "bg-gray-100 text-gray-600"
                     }`}>

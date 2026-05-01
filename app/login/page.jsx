@@ -42,7 +42,7 @@ export default function Login() {
     <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <section className="w-full max-w-md bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
         <div className="mb-5">
-          <h1 className="text-xl font-semibold text-gray-900">Sign In</h1>
+          <h1 className="text-xl font-semibold text-gray-900">Log In</h1>
           <p className="text-sm text-gray-500 mt-1">Access your team workspace</p>
         </div>
 
@@ -80,16 +80,16 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gray-900 text-white py-2 rounded-md text-sm hover:bg-gray-800 transition disabled:opacity-50"
+            className="w-full bg-gray-900 cursor-pointer text-white py-2 rounded-md text-sm hover:bg-gray-800 transition disabled:opacity-50"
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? 'Logging In...' : 'Login'}
           </button>
         </form>
 
         <p className="mt-4 text-sm text-gray-500 text-center">
           Don't have an account?{' '}
-          <Link href="/signup" className="text-gray-900 font-medium">
-            Create Account
+          <Link href="/signup" className="text-gray-900 cursor-pointer font-medium">
+            Sign Up
           </Link>
         </p>
       </section>

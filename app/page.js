@@ -18,14 +18,14 @@ export default function HomePage() {
       <div className="flex gap-3">
         <button
           onClick={() => router.push("/signup")}
-          className="bg-gray-900 text-white px-6 py-2.5 rounded-md text-sm hover:bg-gray-800 transition"
+          className="cursor-pointer bg-gray-900 text-white px-6 py-2.5 rounded-md text-sm hover:bg-gray-800 transition"
         >
           Get Started
         </button>
 
         <button
           onClick={() => router.push("/login")}
-          className="border border-gray-300 px-6 py-2.5 rounded-md text-sm text-gray-700 hover:bg-gray-100 transition"
+          className="cursor-pointer border border-gray-300 px-6 py-2.5 rounded-md text-sm text-gray-700 hover:bg-gray-100 transition"
         >
           Login
         </button>
